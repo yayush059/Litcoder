@@ -1,0 +1,43 @@
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        charCount(str);        
+    }
+    
+    public static void charCount(String str) {
+        //Do Something
+        float uppercase=0;
+        float lowercase=0;
+        float digits=0;
+        float others=0;
+        float len=str.length();
+        for(int i=0;i<len;i++){
+        char ch=str.charAt(i);
+        if(ch>='A' && ch<='Z'){
+        uppercase++;
+        }
+        else if(ch>='a' && ch<='z'){
+        lowercase++;
+        }
+        else if(ch>='0' && ch<='9'){
+        digits++;
+        }else{
+        others++;
+        }
+    }
+    System.out.println(Math.round(((uppercase/len)*100)*1000.0)/1000.0+"%");
+    System.out.println(Math.round(((lowercase/len)*100)*1000.0)/1000.0+"%");
+    System.out.println(Math.round(((digits/len)*100)*1000.0)/1000.0+"%");
+    System.out.println(Math.round(((others/len)*100)*1000.0)/1000.0+"%");
+    }
+}
+

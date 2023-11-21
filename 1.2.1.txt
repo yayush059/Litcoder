@@ -1,0 +1,115 @@
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException{
+        Scanner sc = new Scanner(System.in);
+        String[][] arr = new String[9][9];
+        sc.nextInt();
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                arr[i][j]=sc.next();
+            }
+        }
+        
+        int sq=0;
+        for(int i=0;i<9;i+=3){
+            for(int j=0;j<9;j+=3){
+                sq=sq+square_check(arr,i,j);
+            }
+        }
+        
+        int sum=row_check(arr)+
+        column_check(arr)+
+        sq;
+        
+        if(sum==11){
+            System.out.println("YES");
+        }else{
+            System.out.println("NO");
+        }
+        
+    }
+    
+    public static int row_check(String[][] arr){
+        int temp;
+        int repeat=0;
+        int valid=0;
+        int output=0;
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                int[]num ={0,0,0,0,0,0,0,0,0};
+                if(!(arr[i][j].equals("."))){
+                    temp=Integer.parseInt(arr[i][j]);
+                    if(num[temp-1]==0){
+                        num[temp-1]=1;
+                    }else{
+                        repeat=1;
+                    }
+                }
+            }
+            if(repeat==0){
+                valid++;
+            }
+        }
+        if(valid==9){
+            output=1;
+        }
+        return output;
+    }
+    
+    public static int column_check(String[][] arr){
+        int temp;
+        int repeat=0;
+        int valid=0;
+        int output=0;
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                int[] num={0,0,0,0,0,0,0,0,0};
+                if(!(arr[j][i].equals("."))){
+                    temp= Integer.parseInt(arr[j][i]);
+                    if(num[temp-1]==0){
+                        num[temp-1]=1;
+                    }else{
+                        repeat=1;
+                    }
+                }
+            }
+            if(repeat==0){
+                valid++;
+            }
+        }
+        if(valid==9){
+            output=1;
+        }
+        return output;
+    }
+    
+    public static int square_check(String[][]arr,int row_num,int col_num){
+        int[] num={0,0,0,0,0,0,0,0,0};
+        int temp;
+        int repeat=0;
+        int valid=0;
+        for(int i=row_num;i<row_num+3;i++){
+            for(int j=col_num;j<col_num+3;j++){
+                if(!(arr[i][j].equals("."))){
+                    temp=Integer.parseInt(arr[i][j]);
+                    if(num[temp-1]==0){
+                        num[temp-1]=1;
+                    }else{
+                        repeat=1;
+                    }
+                }
+            }
+        }
+        if(repeat==0){
+            valid++;
+        }
+        return valid;
+    }
+}
