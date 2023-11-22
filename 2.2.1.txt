@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int num = input.nextInt();
+        int k = input.nextInt();
+        int ret = doSomething(num,k);        
+        System.out.println(ret);
+    }
+    
+    public static int doSomething(int num, int k) {
+        if(num==0){
+            return 0;
+        }
+        int temp=num%10;
+        if(num<k){
+            return -1;
+        }
+        for(int i=0;i<=10;i++){
+            int res=(k*i)%10;
+            if(res==temp){
+                if(k*i>num){
+                    return -1;
+                }
+                return i;
+            }
+        }
+        return -1;
+    }
+}
