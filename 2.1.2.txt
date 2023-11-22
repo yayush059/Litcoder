@@ -1,0 +1,51 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class CustomStack {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+    
+        String userInput = scanner.nextLine();
+
+        String[] commands = userInput.split(",");
+        processCommands(commands);
+    }
+
+    private static void processCommands(String[] commands) {
+        StringBuilder s = new StringBuilder();
+        Stack<String> stack = new Stack<>();
+
+        for (String command : commands) {
+            String[] split = command.split(" ");
+            int t = Integer.parseInt(split[0]);
+
+            switch (t) {
+                case 1:
+                    String w = split[1];
+                    s.append(w);
+                    stack.push(1 + " " + w.length());
+                    break;
+                case 2:
+                    int k = Integer.parseInt(split[1]);
+                    stack.push(2 + " " + s.substring(s.length() - k));
+                    s.setLength(s.length() - k);
+                    break;
+                case 3:
+                    k = Integer.parseInt(split[1]);
+                    System.out.println(s.charAt(k - 1));
+                    break;
+                case 4:
+                    String undo = stack.pop();
+                    String[] undoItems = undo.split(" ");
+                    if (undoItems[0].equals("1")) {
+                        s.setLength(s.length() - Integer.parseInt(undoItems[1]));
+                    } else {
+                        s.append(undoItems[1]);
+                    }
+                    break;
+            }
+        }
+    }
+}
