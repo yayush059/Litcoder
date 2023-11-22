@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class rough {
+    public static void main(String[] args){
+        Scanner input= new Scanner(System.in);
+        String text= input.next();
+        String pattern= input.next();
+        int ret =doSomething(text, pattern); 
+        System.out.println(ret);
+
+}
+
+    public static int doSomething(String text, String pattern) {
+        int res = 0, cnt1 = 0, cnt2 = 0;
+
+        for (char c : text.toCharArray()) {
+            if (c == pattern.charAt(1)) {
+                res += cnt1;
+                cnt2 += 1;
+
+            }
+            if (c == pattern.charAt(0)) {
+                cnt1 += 1;
+
+            }
+
+        }
+        return res + Math.max(cnt1, cnt2);
+
+    }
+
+}
