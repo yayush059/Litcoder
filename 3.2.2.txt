@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class noPrefixSet {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        String str= sc.nextLine();
+        String[] arr = str.split(" ");
+        int res=0;
+        for(int i=0;i<arr.length;i++){
+            String temp=arr[i];
+            for(int j=i+1;j< arr.length;j++){
+                if(arr[j].contains(temp)){
+                    res=1;
+                }
+            }
+        }
+        if(res==0){
+            System.out.println("GOOD PASSWORD");
+        }else{
+            System.out.println("BAD PASSWORD");
+        }
+    }
+}
